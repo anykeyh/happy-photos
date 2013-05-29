@@ -1,0 +1,79 @@
+// Place all the styles related to the Picture controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+input.for-zip-cb {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+a.for-remove-btn {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+.new {
+  color: red;
+  position: absolute;
+  background-color: rgba(white, 0.75);
+  top: 10px;
+  padding: 2px;
+  right: 10px;
+}
+
+#file-drop-zone {
+  border: dashed 5px #CCC;
+  border-radius: 10px;
+  text-align: center;
+  color: #CCC;
+  font-size: 1.5em;
+  padding: 20px;
+
+  &.drag-over {
+    color: yellow;
+    border-color: yellow;
+  }
+}
+
+form.dragmethod input {
+  display: none;
+}
+
+
+.image-template {
+  text-align: left;
+
+  img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+/*.image-template {
+  margin: auto;
+  border: solid 1px red;
+  height: 110px;
+
+  .left-block {
+    float: left;
+    width: 110px;
+    height: 100%;
+    border-right: solid 1px black;
+  }
+
+  .image-wrapper {
+    background-color: white;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 5px;
+    border: solid 3px black;
+    height: 100px;
+    width: 100px;
+  }
+
+  img {
+    float: left;
+    padding: 20px;
+  }
+}*/

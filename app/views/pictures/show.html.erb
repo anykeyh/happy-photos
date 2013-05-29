@@ -1,0 +1,8 @@
+<% content_for :action_bar do %>
+  <%= action_link "Ajouter une photo", new_picture_path %>
+  <%= action_link "Retour à la liste des photos", pictures_path %>
+  <%= action_link "Télécharger la photo", @picture.file.url, :target => "_blank" %>
+<% end %>
+
+<a href="<%= pictures_path %>">&lt; Retourner aux photos</a>
+<img src="<%= @picture.file.url %>"></img>

@@ -1,0 +1,59 @@
+<% content_for :action_bar do %>
+  <%= action_link "Ajouter une photo", new_picture_path %>
+  <%= action_link "Télécharger les photos selectionnées", "#", :id => 'download-as-zip' %>
+<% end %>
+<h1>Liste des photos</h1>
+<p class="lead"><strong><%= @resource.count %></strong> photos, <strong><%= @resource.inject(0){ |x, v| x+=v.file.size;x } / 1.megabyte %></strong> Mb</p>
+<div>
+  <% if @resource.empty? %>
+    <div class="hint no-resource">Il n'y a pas de photos pour le moment.</div>
+  <% else %>
+    <a href="#" onclick="$('input.for-zip-cb').attr('checked', 'checked').trigger('change')">Selectionner tout</a>
+    <% x, first = 0, false %>
+
+    <% @resource.each do |picture| %>
+        <%if x % 4  == 0 %>
+          <% if first %>
+          <% first = false %>
+          <% else %>
+            </ul>
+          <% end %>
+          <ul class="thumbnails">
+        <% end %>
+         <li class="span3 tm-block">
+          <div class="thumbnail relative center">
+            <a href="<%= picture_path picture %>">
+              <img src="<%= picture.file.url :thumb %>" alt="">
+            </a>
+            <input type="checkbox" value="<%= picture.id %>" class="for-zip-cb">
+            <% if !picture.updated_at.nil? && -(picture.updated_at - DateTime.now) <= 1.day %>
+              <div class="new">New !</div>
+            <% end %>
+            <% if is_admin? %>
+              <a class="for-remove-btn" href="<%= url_for(:action => :destroy, :id => picture.id) %>" onclick="return confirm_deletion.call(this);"><i class="icon-remove"></i></a>
+            <% end %>
+          </div>
+        </li>
+        <% x+= 1 %>
+    <% end %>
+  <% end %>
+  </ul>
+
+  <hr>
+    <h1>Nuage de tags</h1>
+    <div class="tag-cloud">
+    </div>
+  <hr>
+</div>
+<script>
+  function confirm_deletion() {
+    if(confirm("Cette action est permanente. Etes vous sur?")) {
+      self = this
+      $.ajax($(this).attr('href'), {method: 'delete'})
+        .success(function(){$(self).parents('.tm-block').remove();})
+        .fail(function(){alert("impossible de supprimer l'image.");})
+    }
+
+    return false;
+  }
+</script>

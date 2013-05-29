@@ -1,0 +1,13 @@
+<div>En ligne en tant que <%=
+  if session[:rights] == :admin
+    "Administrateur"
+  else
+    "Utilisateur"
+  end
+%></div>
+<a href="<%= picture_upload_path %>">Ajouter une photo</a>
+<div>
+  <% Picture.all.each do |picture| %>
+    <img src="<%= picture.url %>"></img>
+  <% end %>
+</div>
