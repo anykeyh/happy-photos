@@ -25,8 +25,8 @@ set :user, "root"
 
 
 task :configure, :roles => :web do
-  run "ln -s #{shared_path}/config/database.yml #{current_release}/config/database.yml"
-  run "ln -s #{shared_path}/config/database.yml #{current_release}/config/happy_photos.yml"
+  run "ln #{shared_path}/config/database.yml #{current_release}/config/database.yml"
+  run "ln #{shared_path}/config/happy_photos.yml #{current_release}/config/happy_photos.yml"
 
   #run [
   #  "mkdir -p #{shared_path}/log",
@@ -61,7 +61,7 @@ namespace :deploy do
 
   desc "Restart the Thin processes"
   task :restart do
-    run "source #{rvm_path_source} && cd #{release_path} && kill -QUIT `cat tmp/pids/unicorn.pid`"
+    run "test -e tmp/pids/unicorn.pid && (source #{rvm_path_source} && cd #{release_path} && kill -QUIT `cat tmp/pids/unicorn.pid`); true"
     run "source #{rvm_path_source} && cd #{release_path} && unicorn_rails -c config/unicorn.rb -D -E production"
   end
 
