@@ -11,7 +11,10 @@ capybara-*.html
 /public/system/*
 /coverage/
 /spec/tmp/*
+
 /config/happy_photos.yml
+/config/database.yml
+
 **.orig
 rerun.txt
 pickle-email-*.html
