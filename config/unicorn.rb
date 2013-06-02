@@ -19,8 +19,8 @@ listen "#{SHARED_PATH}/sockets/unicorn.sock", :backlog => 64
 pid "#{SHARED_PATH}/pids/unicorn.pid"
 
 # Set the path of the log files inside the log folder of the testapp
-stderr_path "#{SHARED_PATH}log/unicorn.stderr.log"
-stdout_path "#{SHARED_PATH}log/unicorn.stdout.log"
+stderr_path "#{SHARED_PATH}/log/unicorn.stderr.log"
+stdout_path "#{SHARED_PATH}/log/unicorn.stdout.log"
 
 before_fork do |server, worker|
 # This option works in together with preload_app true setting
