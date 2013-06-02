@@ -61,7 +61,7 @@ namespace :deploy do
 
   desc "Restart the Thin processes"
   task :restart do
-    run "test -e tmp/pids/unicorn.pid && (source #{rvm_path_source} && cd #{release_path} && kill -QUIT `cat tmp/pids/unicorn.pid`); true"
+    run "test -e #{shared_path}/pids/unicorn.pid && (source #{rvm_path_source} && cd #{release_path} && kill -QUIT `cat #{shared_path}/pids/unicorn.pid`); true"
     run "source #{rvm_path_source} && cd #{release_path} && unicorn_rails -c config/unicorn.rb -D -E production"
   end
 
