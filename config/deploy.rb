@@ -33,7 +33,7 @@ end
 
 task :bundle2 do
   run [
-    "source #{rvm_path_source} && cd #{release_path} &&",
+    "cd #{release_path} &&",
     "bundle install",
     "--gemfile #{release_path}/Gemfile",
     "--path #{shared_path}/bundle",
