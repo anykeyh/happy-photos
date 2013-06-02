@@ -1,5 +1,5 @@
 PATH = File.expand_path('../..', __FILE__)
-SHARED_PATH = File.expand_path("../shared/", PATH)
+SHARED_PATH = File.expand_path("../../shared/", PATH)
 
 worker_processes 4
 working_directory "#{PATH}"
