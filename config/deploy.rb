@@ -27,6 +27,14 @@ set :user, "root"
 task :configure, :roles => :web do
   run "(rm #{current_release}/config/database.yml; true) && ln -s #{shared_path}/config/database.yml #{current_release}/config/database.yml"
   run "(rm #{current_release}/config/happy_photos.yml; true) && ln -s #{shared_path}/config/database.yml #{current_release}/config/happy_photos.yml"
+
+  run [
+    "mkdir -p #{current_release}/log",
+    "mkdir -p #{shared_path}/log",
+    "touch #{shared_path}/log/production.log",
+    "ln -s #{shared_path}/log/production.log #{current_release}/log/production.log"
+  ].join(" && ")
+
   #run "rm -rf #{current_release}/.bundle  && ln -s #{shared_path}/dot_bundle #{current_release}/.bundle"
 end
 
