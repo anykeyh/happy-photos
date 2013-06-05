@@ -70,7 +70,7 @@ jQuery ($) ->
     paramname: 'picture[file][]'          # POST parameter name used on serverside to reference file
     withCredentials: true                 # make a cross-origin request with cookies
     data:
-      utf8: '✓'
+      #utf8: '✓'
       authenticity_token: -> $('form input[name=authenticity_token]').val()
     dragOver: -> $(this).addClass('drag-over')
     dragLeave: -> $(this).removeClass('drag-over')
